@@ -1,0 +1,27 @@
+<template name="main-layout">
+  <head>
+      <title>Betrayal at House on the Hill</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top main-nav">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="navbar-brand" href="/">Betrayal at House on the Hill</a>
+            <div class="pull-right">
+              {{> loginButtons}}
+            </div>
+          </div>
+        </div>
+      </div>
+      {{> errors}}
+      <div id="main-content">
+        {{#if currentUser}}
+          {{> yield}}
+        {{else}}
+          <h2>Please Login to Play!</h2>
+        {{/if}}
+      </div>
+    </div>
+  </body>
+</template>

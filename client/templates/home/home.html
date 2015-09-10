@@ -1,0 +1,23 @@
+<template name="home">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-2">
+      <h1>Games List</h1>
+      <button type="button" id="create-game-button" class="btn btn-success btn-lg">Create A New Game</button>
+      {{#each games}}
+          <ul id="game-list">
+              {{> gameListItem}}
+          </ul>
+      {{/each}}
+    </div>
+    <div class="col-md-4">
+      <h1>Users</h1>
+      {{#each users}}
+          {{> userPill}}
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="userPill">
+    <span class="label {{labelClass}}">{{username}}</span>
+</template>

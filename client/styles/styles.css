@@ -1,0 +1,100 @@
+h1, h2, h3, h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+button a {
+    text-decoration: none;
+    color: #000000;
+}
+
+button a:hover {
+    text-decoration: none;
+    color: #000000;
+}
+
+#main-content {
+    margin-top: 55px;
+}
+
+.main-nav {
+    margin-bottom: 10px;
+}
+
+.navbar-brand {
+    padding-left: 0;
+}
+
+#game-list {
+    padding: 0;
+    list-style-type: none;
+}
+
+#game-list li {
+    padding: 0;
+}
+
+.game-list-title:hover {
+    cursor: pointer;
+    color: red;
+}
+
+@-webkit-keyframes fadeOut {
+  0% {opacity: 0;}
+  10% {opacity: 1;}
+  90% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@keyframes fadeOut {
+  0% {opacity: 0;}
+  10% {opacity: 1;}
+  90% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+.errors{
+  position: fixed;
+  z-index: 10000;
+  padding: 10px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  pointer-events: none;
+}
+.alert {
+          animation: fadeOut 2700ms ease-in 0s 1 forwards;
+  -webkit-animation: fadeOut 2700ms ease-in 0s 1 forwards;
+     -moz-animation: fadeOut 2700ms ease-in 0s 1 forwards;
+  width: 250px;
+  float: right;
+  clear: both;
+  margin-bottom: 5px;
+  pointer-events: auto;
+}
+
+/* --------------------------- Game page styles -------------------------------*/
+
+.game-title {
+    text-align: center;
+}
+
+.players-list-title {
+    text-align: center;
+}
+
+.current-players {
+    position: absolute;
+    left: 70px;
+    top: 100px;
+}
+
+.current-players ul {
+    padding: 0;
+    list-style: none;
+}
+
+.affix {
+    top: 100px;
+}
