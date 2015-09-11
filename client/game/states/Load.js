@@ -4,6 +4,7 @@ Load = function(game) {
 
 Load.prototype = {
   preload: function() {
+    this.game.load.image('cover', '/img/cover.png');
   },
   
   create: function() {

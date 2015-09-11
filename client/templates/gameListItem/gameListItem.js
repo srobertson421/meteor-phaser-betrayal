@@ -28,11 +28,17 @@ Template.gameListItem.helpers({
 
 Template.gameListItem.events({
     'click .delete-button': function(e) {
-        e.preventDefault();
+      e.preventDefault();
         
-        if (Meteor.userId() === this.owner) {
-            Meteor.call('deleteGame', this._id);
-        }
+      if (Meteor.userId() === this.owner) {
+        if (confirm('Are you sure you want to delete?')) {
+          Meteor.call('deleteGame', this._id, function(error, result) {
+            if (error) {
+                throwError(error.reason);
+            }
+          });
+        }    
+      }
     },
     
     'click h4': function(e) {

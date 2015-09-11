@@ -1,17 +1,30 @@
 <template name="game">
-    <div class="current-players" data-spy="affix" data-offset-top="200">
-        <h3 class="players-list-title">Players</h3>
-        <ul>
-            {{#each players}}
-                <li>{{name}} {{#if owned}}<button class="leave-game-button">Leave Game</button>{{/if}}</li>
-            {{/each}}
-        </ul>
-    </div>
     <div class="container">
         <div class="row">
-            <h2 class="game-title">{{title}}</h2>
-            <div id="game">
-                {{game}}
+            <div class="current-players col-md-2">
+                <h3 class="players-list-title">Players</h3>
+                <ul>
+                    {{#each players}}
+                        <li>{{name}} {{#if isMe}}<button class="leave-game-button">Leave Game</button>{{/if}}</li>
+                    {{/each}}
+                </ul>
+                {{#if gameStarted}}
+                    {{#if owned}}
+                        <button class="game-start-button btn btn-lg btn-danger">End Game</button>
+                    {{/if}}
+                {{else}}
+                    {{#if owned}}
+                        <button class="game-start-button btn btn-lg btn-success">Start Game</button>
+                    {{/if}}
+                {{/if}}
+            </div>
+            <div class="col-md-8">
+                <h2 class="game-title">{{title}}</h2>
+                <div id="game">
+                    {{#if gameStarted}}
+                        {{game}}
+                    {{/if}}
+                </div>
             </div>
         </div>
     </div>

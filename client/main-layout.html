@@ -4,16 +4,24 @@
   </head>
   <body>
     <div class="container">
-      <div class="navbar navbar-inverse navbar-fixed-top main-nav">
-        <div class="navbar-inner">
-          <div class="container">
-            <a class="navbar-brand" href="/">Betrayal at House on the Hill</a>
-            <div class="pull-right">
+      <nav class="navbar navbar-inverse navbar-fixed-top main-nav" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{pathFor 'home'}}">Betrayal at House on the Hill</a>
+          </div>
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
               {{> loginButtons}}
-            </div>
+            </ul>
           </div>
         </div>
-      </div>
+      </nav>
       {{> errors}}
       <div id="main-content">
         {{#if currentUser}}

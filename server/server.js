@@ -30,6 +30,10 @@ Meteor.methods({
         Games.remove(gameId);
     },
     
+    updateGame: function(gameId, newValues) {
+        Games.update(gameId, {$set: newValues});
+    },
+    
     addPlayerToGame: function(playerId, gameId) {
         
         var userObj = {

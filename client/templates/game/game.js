@@ -1,16 +1,30 @@
 var game;
 
 Template.game.onRendered(function() {
+    // console.log(this);
+    // Session.set('gameStarted', this.data.started);
 });
 
 Template.game.onDestroyed(function() {
-    game.destroy();
+    game.destroy(true);
     game = null;
+    $('canvas').remove();
 });
 
 Template.game.helpers({
+    owned: function() {
+        if (this.owner === Meteor.userId()) {
+            return true;
+        }
+    },
+    
+    isMe: function() {
+        if (this.id === Meteor.userId()) {
+            return true;
+        }
+    },
+    
     game: function() {
-        
         game = new Phaser.Game(800, 600, Phaser.CANVAS, 'game');
         
         game.global = {};
@@ -24,10 +38,8 @@ Template.game.helpers({
         game.state.start('boot');
     },
     
-    owned: function() {
-        if (this.id === Meteor.userId()) {
-            return true;
-        }
+    gameStarted: function() {
+        return Session.get('gameStarted');
     }
 });
 
@@ -40,5 +52,13 @@ Template.game.events({
                 throwError(error.reason);
             }
         });
+    },
+    
+    'click .game-start-button': function(e) {
+        e.preventDefault();
+        
+        Session.set('gameStarted', true);
+        
+        Meteor.call('updateGame', this._id, {started: Session.get('gameStarted')});
     }
 });

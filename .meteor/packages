@@ -11,6 +11,5 @@ twbs:bootstrap
 jquery
 aldeed:collection2
 accounts-password
-accounts-github
 gnomathibus:meteor-phaser
 mizzao:user-status

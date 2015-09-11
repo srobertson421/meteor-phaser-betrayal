@@ -1,19 +1,21 @@
 <template name="gameListItem">
     <li>
-        <h4 class="game-list-title">{{title}}</h4>
-        <p>Number of Players: {{players.length}}</p>
-        <p>Created By: {{ownerName}}</p>
-        {{#if owned}}
-            <button class="delete-button btn-sm btn-danger">&times;</button>
-        {{/if}}
-        {{#if available}}
-            {{#if notInGame}}
-                <button class="join-button btn-md btn-primary">Join Game</button>
-            {{else}}
-                <p class="in-game-message">You are currently in this game</p>
+        <div class="well">
+            <h4 class="game-list-title">{{title}}</h4>
+            {{#if owned}}
+                <button class="delete-button btn-sm btn-danger">&times;</button>
             {{/if}}
-        {{else}}
-            <p class="full-server-message">This room is full</p>
-        {{/if}}
+            <p>Number of Players: {{players.length}}</p>
+            <p>Created By: {{ownerName}}</p>
+            {{#if available}}
+                {{#if notInGame}}
+                    <button class="join-button btn-md btn-primary">Join Game</button>
+                {{else}}
+                    <p class="in-game-message">You are currently in this game</p>
+                {{/if}}
+            {{else}}
+                <p class="full-server-message">This room is full</p>
+            {{/if}}
+        </div>
     </li>
 </template>
