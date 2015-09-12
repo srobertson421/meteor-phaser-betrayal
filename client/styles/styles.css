@@ -98,6 +98,10 @@ button a:hover {
 
 /* --------------------------- Game page styles -------------------------------*/
 
+#game h3 {
+  text-align: center;
+}
+
 .game-title {
     text-align: center;
 }

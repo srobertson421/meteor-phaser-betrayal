@@ -20,7 +20,7 @@ Template.gameListItem.helpers({
     },
     
     available: function() {
-        if (this.players.length < 6 && !this.started && !this.ended) {
+        if (this.players.length < 6 && this.players.length > 0 && !this.started && !this.ended) {
             return true;
         }
     }

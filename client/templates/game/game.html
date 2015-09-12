@@ -5,24 +5,44 @@
                 <h3 class="players-list-title">Players</h3>
                 <ul>
                     {{#each players}}
-                        <li>{{name}} {{#if isMe}}<button class="leave-game-button">Leave Game</button>{{/if}}</li>
+                        <li>
+                            {{name}} 
+                            {{#if owned}}
+                                {{#if isMe}}
+                                    <span class="btn-success btn-sm">Host</span>
+                                {{/if}}
+                            {{else}}
+                                {{#if isMe}}
+                                    <button class="leave-game-button">Leave Game</button>
+                                {{/if}}
+                            {{/if}}
+                        </li>
                     {{/each}}
                 </ul>
-                {{#if gameStarted}}
-                    {{#if owned}}
-                        <button class="game-start-button btn btn-lg btn-danger">End Game</button>
-                    {{/if}}
+                {{#if gameEnded}}
                 {{else}}
-                    {{#if owned}}
-                        <button class="game-start-button btn btn-lg btn-success">Start Game</button>
+                    {{#if gameStarted}}
+                        {{#if owned}}
+                            <button class="game-end-button btn btn-lg btn-danger">End Game</button>
+                        {{/if}}
+                    {{else}}
+                        {{#if owned}}
+                            <button class="game-start-button btn btn-lg btn-success">Start Game</button>
+                        {{/if}}
                     {{/if}}
                 {{/if}}
             </div>
             <div class="col-md-8">
                 <h2 class="game-title">{{title}}</h2>
                 <div id="game">
-                    {{#if gameStarted}}
-                        {{game}}
+                    {{#if gameEnded}}
+                        <h3>Game has Ended</h3>
+                    {{else}}
+                        {{#if gameStarted}}
+                            {{game}}
+                        {{else}}
+                            <h3>Waiting for Owner to Start the Game</h3>
+                        {{/if}}
                     {{/if}}
                 </div>
             </div>

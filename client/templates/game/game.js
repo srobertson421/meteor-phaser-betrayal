@@ -1,4 +1,21 @@
+gameStream = new Meteor.Stream('gameData');
+
+gameStream.on('gameData', function(data) {
+  console.log(data);
+  Session.set('gameStarted', data.started);
+  Session.set('gameEnded', data.ended);
+  
+  if(data.ended) {
+      destroyGame();
+  }
+  
+});
+
 var game;
+
+Template.game.onCreated(function() {
+    $('canvas').remove();
+});
 
 Template.game.onRendered(function() {
     // console.log(this);
@@ -6,9 +23,7 @@ Template.game.onRendered(function() {
 });
 
 Template.game.onDestroyed(function() {
-    game.destroy(true);
-    game = null;
-    $('canvas').remove();
+    destroyGame();
 });
 
 Template.game.helpers({
@@ -39,7 +54,11 @@ Template.game.helpers({
     },
     
     gameStarted: function() {
-        return Session.get('gameStarted');
+        return Games.findOne({_id: this._id}).started;
+    },
+    
+    gameEnded: function() {
+        return Games.findOne({_id: this._id}).ended;
     }
 });
 
@@ -60,5 +79,43 @@ Template.game.events({
         Session.set('gameStarted', true);
         
         Meteor.call('updateGame', this._id, {started: Session.get('gameStarted')});
+        
+        var gameData = {
+            started: true,
+            ended: false,
+            gameId: this._id,
+            senderId: Meteor.userId(),
+            senderName: this.ownerName
+        }
+        
+        gameStream.emit('gameData', gameData);
+    },
+    
+    'click .game-end-button': function(e) {
+        e.preventDefault();
+        
+        Session.set('gameEnded', true);
+        
+        Meteor.call('updateGame', this._id, {ended: Session.get('gameEnded')});
+        
+        var gameData = {
+            started: true,
+            ended: true,
+            gameId: this._id,
+            senderId: Meteor.userId(),
+            senderName: this.ownerName
+        }
+        
+        gameStream.emit('gameData', gameData);
+        
+        destroyGame();
     }
 });
+
+var destroyGame = function() {
+    if (game) {
+        game.destroy(true);
+        game = null;
+    }
+    $('canvas').remove();
+}
