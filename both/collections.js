@@ -44,6 +44,10 @@ Schemas.Games = new SimpleSchema({
   ended: {
     type: Boolean,
     label: "Game Ended Switch"
+  },
+  turn: {
+    type: String,
+    label: "Player Turn Tracker"
   }
 });
 

@@ -5,6 +5,8 @@ Boot = function(game) {
 Boot.prototype = {
   create: function() {
     
+    this.stage.disableVisibilityChange = true;
+    
     //Scaling
     this.game.input.maxPointers = 1;
     this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;

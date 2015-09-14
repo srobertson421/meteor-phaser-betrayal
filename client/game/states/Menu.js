@@ -15,6 +15,14 @@ Menu.prototype = {
   },
   
   start: function() {
+    
+    gameStream.emit('gameEvent', {
+      eventType: 'click',
+      state: this.game.state.current,
+      sender: Meteor.userId(),
+      nextState: 'game'
+    });
+    
     this.game.state.start('game');
   }
 }

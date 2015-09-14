@@ -1,0 +1,60 @@
+{"frames": {
+
+"idle_1":
+{
+	"frame": {"x":2,"y":2,"w":114,"h":87},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":114,"h":87},
+	"sourceSize": {"w":114,"h":87}
+},
+"idle_2":
+{
+	"frame": {"x":118,"y":2,"w":114,"h":87},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":114,"h":87},
+	"sourceSize": {"w":114,"h":87}
+},
+"idle_3":
+{
+	"frame": {"x":234,"y":2,"w":114,"h":87},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":114,"h":87},
+	"sourceSize": {"w":114,"h":87}
+},
+"idle_4":
+{
+	"frame": {"x":350,"y":2,"w":114,"h":87},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":114,"h":87},
+	"sourceSize": {"w":114,"h":87}
+},
+"idle_5":
+{
+	"frame": {"x":466,"y":2,"w":114,"h":87},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":114,"h":87},
+	"sourceSize": {"w":114,"h":87}
+},
+"idle_6":
+{
+	"frame": {"x":582,"y":2,"w":114,"h":87},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":114,"h":87},
+	"sourceSize": {"w":114,"h":87}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "golem.png",
+	"format": "RGBA8888",
+	"size": {"w":698,"h":91},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:b5ab5277633d35ee65aa7aed8f934ec1:a971b96e14e69034c07ad8129ea27ac6:4ac9190e07869895319abdaddf310eff$"
+}
+}

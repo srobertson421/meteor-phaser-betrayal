@@ -1,15 +1,36 @@
-gameStream = new Meteor.Stream('gameData');
+// --------------- Game Stream Methods ----------------------
+// Data changes
+gameStream = new Meteor.Stream('gameStream');
 
 gameStream.on('gameData', function(data) {
   console.log(data);
+  console.log(game);
   Session.set('gameStarted', data.started);
   Session.set('gameEnded', data.ended);
+  Session.set('gameTurn', data.turn);
   
   if(data.ended) {
       destroyGame();
   }
   
 });
+
+// Game Events
+gameStream.on('gameEvent', function(event) {
+     console.log(event);
+     
+     if (event.eventType === 'click' && event.state === 'menu') {
+        game.state.states[event.state].start();
+     }
+     
+     if (event.eventType === 'move' && event.state === 'game') {
+         game.state.states[event.state].startPlayerMovement(event.direction, event.sender)
+     } else if (event.eventType === 'stopMove' && event.state === 'game') {
+        game.state.states[event.state].stopPlayerMovement(event.direction, event.sender);
+     }
+});
+
+// --------------- End of Game Stream Methods ----------------------
 
 var game;
 
@@ -42,7 +63,18 @@ Template.game.helpers({
     game: function() {
         game = new Phaser.Game(800, 600, Phaser.CANVAS, 'game');
         
-        game.global = {};
+        game.global = {
+            playerCount: this.players.length,
+            players: []
+        };
+        
+        console.log(this)
+        
+        for (var i = 0; i < game.global.playerCount; i++) {
+            game.global.players.push(this.players[i].id);
+        }
+        
+        console.log(game.global.players)
         
         game.state.add('boot', new Boot(game));
         game.state.add('load', new Load(game));

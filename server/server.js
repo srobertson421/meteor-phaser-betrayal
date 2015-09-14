@@ -22,7 +22,8 @@ Meteor.methods({
             ownerName: Meteor.user().username,
             players: [userObj],
             started: false,
-            ended: false
+            ended: false,
+            turn: Meteor.userId()
         });
     },
     

@@ -31,8 +31,8 @@ GameController = RouteController.extend({
   },
   
   action: function () {
-    var game = Games.findOne({_id: this.params._id});
-    Session.set('gameStarted', game.started);
+    //var game = Games.findOne({_id: this.params._id});
+    //Session.set('gameStarted', game.started);
     this.render();
   }
 });

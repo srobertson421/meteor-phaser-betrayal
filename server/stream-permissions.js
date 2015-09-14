@@ -1,4 +1,4 @@
-gameStream = new Meteor.Stream('gameData');
+gameStream = new Meteor.Stream('gameStream');
 
 gameStream.permissions.write(function() {
   return true;
