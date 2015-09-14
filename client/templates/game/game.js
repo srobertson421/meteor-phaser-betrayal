@@ -21,11 +21,11 @@ gameStream.on('gameEvent', function(event) {
      }
      
      if (event.eventType === 'move' && event.state === 'game') {
-         game.state.states[event.state].startPlayerMovement(event.direction, event.sender)
+        game.state.states[event.state].startPlayerMovement(event.direction, event.sender)
      }
      
      if (event.eventType === 'stopMove') {
-        game.state.states[event.state].stopPlayerMovement(event.direction, event.sender);
+        game.state.states[event.state].stopPlayerMovement(event.direction, event.sender, event.playerX, event.playerY);
      }
 });
 

@@ -1,7 +1,7 @@
 Game = function(game) {
   this.game = game;
   this.players = {};
-  this.pressingKey = false;
+  this.currentPlayerId = Meteor.userId();
 }
 
 Game.prototype = {
@@ -59,7 +59,9 @@ Game.prototype = {
         sender: Meteor.userId(),
         nextState: null,
         velocity: 100,
-        direction: null
+        direction: null,
+        playerX: this.players[Meteor.userId()].x,
+        playerY: this.players[Meteor.userId()].y
       });
     }
   },
@@ -75,8 +77,16 @@ Game.prototype = {
     }
   },
   
-  stopPlayerMovement: function(direction, playerId) {
+  stopPlayerMovement: function(direction, playerId, playerX, playerY) {
     var player = this.players[playerId];
     player.body.velocity.x = 0;
+    
+    if(this.players[playerId].x != playerX && playerX) {
+      this.players[playerId].x = playerX;
+    }
+    
+    if(this.players[playerId].y != playerY && playerY) {
+      this.players[playerId].y = playerY;
+    }
   }
 }
