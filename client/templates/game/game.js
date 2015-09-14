@@ -3,8 +3,6 @@
 gameStream = new Meteor.Stream('gameStream');
 
 gameStream.on('gameData', function(data) {
-  console.log(data);
-  console.log(game);
   Session.set('gameStarted', data.started);
   Session.set('gameEnded', data.ended);
   Session.set('gameTurn', data.turn);
@@ -17,7 +15,6 @@ gameStream.on('gameData', function(data) {
 
 // Game Events
 gameStream.on('gameEvent', function(event) {
-     console.log(event);
      
      if (event.eventType === 'click' && event.state === 'menu') {
         game.state.states[event.state].start();
@@ -25,7 +22,9 @@ gameStream.on('gameEvent', function(event) {
      
      if (event.eventType === 'move' && event.state === 'game') {
          game.state.states[event.state].startPlayerMovement(event.direction, event.sender)
-     } else if (event.eventType === 'stopMove' && event.state === 'game') {
+     }
+     
+     if (event.eventType === 'stopMove') {
         game.state.states[event.state].stopPlayerMovement(event.direction, event.sender);
      }
 });
@@ -68,13 +67,9 @@ Template.game.helpers({
             players: []
         };
         
-        console.log(this)
-        
         for (var i = 0; i < game.global.playerCount; i++) {
             game.global.players.push(this.players[i].id);
         }
-        
-        console.log(game.global.players)
         
         game.state.add('boot', new Boot(game));
         game.state.add('load', new Load(game));
