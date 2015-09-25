@@ -27,6 +27,8 @@ Game.prototype = {
   
   update: function() {
     
+    // Local player movement
+    // Calls startPlayerMovement and send signal for others to do the same
     if (this.cursors.left.isDown) {
       this.startPlayerMovement('left', Meteor.userId());
       
@@ -81,6 +83,7 @@ Game.prototype = {
     var player = this.players[playerId];
     player.body.velocity.x = 0;
     
+    // Latency compensation for movement
     if(this.players[playerId].x != playerX && playerX) {
       this.players[playerId].x = playerX;
     }
